@@ -1,0 +1,12 @@
+Song:
+    parts+=Part
+;
+
+Part:
+    '[' name=ID ']'
+    notes+=Note
+;
+
+Note:
+    note=/([A-G][b#]?[0-9])|N/ duration=FLOAT
+;
