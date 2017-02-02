@@ -193,3 +193,18 @@ def to_chunks(data, chunks_per_second = 1, datarate=44100):
     return frequencies
 
 
+def load_dictionary(filename):
+    words = {}
+    with open(filename) as f:
+        for index, line in enumerate(f):
+            words[line.lower().strip()] = index
+    return words
+
+
+def encode(string, dictionary):
+    return " ".join([str(dictionary[s.lower().strip()]) for s in string.split()])
+
+
+def decode(string, dictionary):
+    reversed_dictionary = {value: key for key, value in dictionary.items()}
+    return " ".join([reversed_dictionary[int(num.strip())] for num in string.split()])
