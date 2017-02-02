@@ -11,5 +11,5 @@ cd Spring2017/setup
 source decal_setup.sh
 ```
 
-And you're done! When the script finishes running you should see "(decal)" appended to the terminal.
+And you're done! When the script finishes running you should see "(decal_env)" appended to the terminal.
 
