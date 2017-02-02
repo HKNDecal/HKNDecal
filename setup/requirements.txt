@@ -1,0 +1,5 @@
+textX
+jupyter
+ipython
+scikit-image
+
