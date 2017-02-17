@@ -62,6 +62,14 @@ class LUT(ast.AST):
     _fields = ['tbl']
 
 
+class IntInput(ast.AST):
+    _fields = ['in']
+
+
+class StrInput(ast.AST):
+    _fields = ['in']
+
+
 class Evaluator(ast.NodeVisitor):
     def __init__(self):
         self.environment = {}
@@ -124,11 +132,17 @@ class Evaluator(ast.NodeVisitor):
             for line in node.stmts:
                 self.visit(line)
 
+    def visit_IntInput(self, node):
+        return int(raw_input())
+
+    def visit_StrInput(self, node):
+        return raw_input()
+
 
 if __name__ == "__main__":
     model = metamodel.metamodel_from_file("deborahscript.tx", classes=[Program, Loop, Assignment, Declaration,
                                                                        Print, Expression, BinaryExpression,
-                                                                       Variable, LUT])
+                                                                       Variable, LUT, IntInput, StrInput])
 
     p = model.model_from_file("gcd.ds")
     evaluator = Evaluator()

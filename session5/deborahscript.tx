@@ -27,7 +27,7 @@ BinaryOp:
 ;
 
 Literal:
-    StringLiteral|NumberLiteral|LUT
+    StringLiteral|NumberLiteral|IntInput|StrInput|LUT
 ;
 
 LUT:
@@ -74,3 +74,10 @@ Loop:
     "DRINK" cond=Expression "COFFEE" stmts*=Statement
 ;
 
+IntInput:
+    in="INTINPUT"
+;
+
+StrInput:
+    in="STRINPUT"
+;
