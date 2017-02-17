@@ -1,0 +1,76 @@
+// Basic Types: Int, Str, Lookup Tables
+
+// Loops: Do While loops
+
+Program:
+    lines += Statement
+;
+
+Statement:
+    Loop|Assignment|Declaration|Print Terminator
+;
+
+Expression:
+    "(" val=ExpressionContents ")"
+;
+
+ExpressionContents:
+    BinaryExpression|Variable|Literal
+;
+
+BinaryExpression:
+    lhs=Expression op=BinaryOp rhs=Expression
+;
+
+BinaryOp:
+    "+"|"-"|">"|"@"
+;
+
+Literal:
+    StringLiteral|NumberLiteral|LUT
+;
+
+LUT:
+    tbl="#"
+;
+
+StringLiteral:
+    s=STRING
+;
+
+NumberLiteral:
+    n=INT
+;
+
+Terminator:
+    "CAT"
+;
+
+Variable:
+    name=/[a-z]+/
+;
+
+Declaration:
+    "CAREFULLY" defn=Assignment
+;
+
+LHS:
+    var=Variable | lut=LUTDef
+;
+
+LUTDef:
+    exp=Expression "@" var=Variable
+;
+
+Assignment:
+    lhs=LHS "SAME" rhs=Expression
+;
+
+Print:
+    "MEOW" exp=Expression
+;
+
+Loop:
+    "DRINK" cond=Expression "COFFEE" stmts*=Statement
+;
+
