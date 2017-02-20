@@ -13,6 +13,8 @@ from __future__ import print_function
 import ast
 from textx import metamodel
 
+import sys
+
 
 class DeborahException(BaseException):
     pass
@@ -58,6 +60,10 @@ class NumberLiteral(ast.AST):
     _fields = ['n']
 
 
+class FloatLiteral(ast.AST):
+    _fields = ['n']
+
+
 class LUT(ast.AST):
     _fields = ['tbl']
 
@@ -67,6 +73,10 @@ class IntInput(ast.AST):
 
 
 class StrInput(ast.AST):
+    _fields = ['in']
+
+
+class FloatInput(ast.AST):
     _fields = ['in']
 
 
@@ -108,6 +118,10 @@ class Evaluator(ast.NodeVisitor):
             return left + right
         if node.op == "-":
             return left - right
+        if node.op == "*":
+            return left * right
+        if node.op == "/":
+            return left / right
         if node.op == "@":
             return right[left]
         if node.op == ">":
@@ -124,6 +138,9 @@ class Evaluator(ast.NodeVisitor):
     def visit_NumberLiteral(self, node):
         return node.n
 
+    def visit_FloatLiteral(self, node):
+        return node.n
+
     def visit_LUT(self, node):
         return {}
 
@@ -138,12 +155,17 @@ class Evaluator(ast.NodeVisitor):
     def visit_StrInput(self, node):
         return raw_input()
 
+    def visit_FloatInput(self, node):
+        return float(raw_input())
+
 
 if __name__ == "__main__":
-    model = metamodel.metamodel_from_file("deborahscript.tx", classes=[Program, Loop, Assignment, Declaration,
-                                                                       Print, Expression, BinaryExpression,
-                                                                       Variable, LUT, IntInput, StrInput])
+    if len(sys.argv) >= 2:
+        model = metamodel.metamodel_from_file("deborahscript.tx", classes=[Program, Loop, Assignment, Declaration,
+                                                                           Print, Expression, BinaryExpression,
+                                                                           Variable, LUT, IntInput, StrInput, FloatInput,
+                                                                           FloatLiteral, NumberLiteral, StringLiteral])
 
-    p = model.model_from_file("gcd.ds")
-    evaluator = Evaluator()
-    evaluator.visit(p)
+        p = model.model_from_file(sys.argv[1])
+        evaluator = Evaluator()
+        evaluator.visit(p)
