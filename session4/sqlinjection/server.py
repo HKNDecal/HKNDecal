@@ -22,11 +22,12 @@ class MyHandler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         logging.getLogger().setLevel(logging.INFO)
-
+        print "url: ", self.path
         parsed = urlparse(self.path)
         query = parse_qs(parsed.query)
         logging.info('received {}'.format(parsed.path))
         parsed_lst = parsed.path.split('/')
+        print "parsed list:", parsed_lst
         logging.info('parsed lst {}'.format(parsed_lst))
 
         # try serving file
@@ -45,8 +46,10 @@ class MyHandler(BaseHTTPRequestHandler):
                 self.send_header('Content-type', content_type)
                 self.end_headers()
                 self.wfile.write(f.read())
+
         # or this could be an api call
         elif parsed_lst[1] == 'api':
+
             # returning list of current todo items
             if parsed_lst[2] == 'todos':
                 todo_list = [row[0] for row in cursor.execute('SELECT * FROM todos')]
@@ -54,6 +57,8 @@ class MyHandler(BaseHTTPRequestHandler):
                 self.send_header('Content-type', 'application/json')
                 self.end_headers()
                 self.wfile.write(json.dumps(todo_list))
+
+
             # inserting into database
             elif parsed_lst[2] == 'todos_insert':
                 if 'name' not in query or len(query['name']) != 1:
@@ -61,8 +66,9 @@ class MyHandler(BaseHTTPRequestHandler):
                     return
                 todo_item_name = query['name'][0]
                 self.send_response(200)
-                cursor.execute('INSERT INTO todos VALUES(\'{}\')'.format(todo_item_name))
+                cursor.executescript("""INSERT INTO todos VALUES('{}')""".format(todo_item_name))    
                 conn.commit()
+
             # removing from database
             elif parsed_lst[2] == 'todos_delete':
                 if 'name' not in query or len(query['name']) != 1:
@@ -70,7 +76,7 @@ class MyHandler(BaseHTTPRequestHandler):
                     return
                 todo_item_name = query['name'][0]
                 self.send_response(200)
-                cursor.execute('DELETE FROM todos WHERE items = \'{}\''.format(todo_item_name))
+                cursor.executescript("""DELETE FROM todos WHERE items = '{}'""".format(todo_item_name))  # <-- this will be the source of the sql injection (use %3B for semicolon)
                 conn.commit()
             else:
                 self.send_response(404)
