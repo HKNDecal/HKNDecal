@@ -23,11 +23,11 @@ BinaryExpression:
 ;
 
 BinaryOp:
-    "+"|"-"|">"|"@"
+    "+"|"-"|">"|"@"|"/"|"*"
 ;
 
 Literal:
-    StringLiteral|NumberLiteral|IntInput|StrInput|LUT
+    StringLiteral|NumberLiteral|IntInput|StrInput|FloatInput|LUT
 ;
 
 LUT:
@@ -40,6 +40,10 @@ StringLiteral:
 
 NumberLiteral:
     n=INT
+;
+
+FloatLiteral:
+    n=FLOAT
 ;
 
 Terminator:
@@ -80,4 +84,8 @@ IntInput:
 
 StrInput:
     in="STRINPUT"
+;
+
+FloatInput:
+    in="FLOATINPUT"
 ;
