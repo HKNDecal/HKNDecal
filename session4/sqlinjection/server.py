@@ -24,6 +24,7 @@ class MyHandler(BaseHTTPRequestHandler):
         logging.getLogger().setLevel(logging.INFO)
         print "url: ", self.path
         parsed = urlparse(self.path)
+        print "URL :", parsed.path
         query = parse_qs(parsed.query)
         logging.info('received {}'.format(parsed.path))
         parsed_lst = parsed.path.split('/')
