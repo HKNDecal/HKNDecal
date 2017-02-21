@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html class="no-js" lang="">
     <head>
         <meta charset="utf-8">
@@ -76,8 +76,24 @@
     <div class="container">
       <h2>XSS Demonstration</h2>
       <!-- Example row of columns -->
-      <div class="row" style="background-color:lightgray">
-        <div class="col-md-4">          
+      <div id="imageDiv">Placeholder for image</div>       
+      <div class="row">
+        <div class="col-md-4">    
+        
+
+        <script type="text/javascript">
+          var position = document.URL.indexOf("link=");
+          if (position !== -1) {
+            var name = document.URL.substring(position+5, document.URL.length);
+            name = decodeURIComponent(name);
+            document.getElementById("imageDiv").innerHTML = name
+          }
+          else {
+           document.getElementById("imageDiv").innerHTML = "<img src='https://i.ytimg.com/vi/tntOCGkgt98/maxresdefault.jpg' height='200px' width='300px' alt='Image was not able to display'>" 
+          }
+          
+
+        </script>      
         </div>
       </div>
       <hr>
