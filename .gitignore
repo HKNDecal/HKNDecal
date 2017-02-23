@@ -87,3 +87,10 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# Temporary files
+*~
+
+# OS generated files
+.DS_Store
+Thumbs.db
