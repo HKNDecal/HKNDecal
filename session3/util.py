@@ -13,7 +13,7 @@ def extract_cols(lst, keys):
 
     return np.array(new_lst)
 
-def visualize_perceptron(feature_names, X, y, w, b):
+def visualize_perceptron(feature_names, X, y, w, b, fig=None):
     d = len(feature_names)
     if d not in (2, 3):
         print "Visualize 2d can only take 2 or 3 features at once!"
@@ -25,46 +25,53 @@ def visualize_perceptron(feature_names, X, y, w, b):
     X_sf = np.take(X, is_sf, axis=0).reshape(-1, d)
     X_nyc = np.take(X, is_nyc, axis=0).reshape(-1, d)
 
+    if fig is None:
+        fig = plt.figure()
+
     # visualize 2d
     if d == 2:
-        fig = plt.figure()
         ax = fig.gca()
 
         h_min, h_max = X[:,0].min(), X[:,0].max()
-        m = w[1]/w[0]
-        ax.plot([h_min, h_max], [b, b + m*(h_max - h_min)], '-', label='decision boundary')
+        slope = -w[0]/w[1]
+        y_int = -b/w[1]
+        ax.plot([h_min, h_max], [y_int, y_int + slope*(h_max - h_min)], '-', label='decision boundary')
         v_min, v_max = X[:,1].min(), X[:,1].max()
 
         ax.scatter(X_sf[:,0], X_sf[:,1], label='sf', c='red')
         ax.scatter(X_nyc[:,0], X_nyc[:,1], label='nyc')
-        plt.xlabel(feature_names[0])
-        plt.ylabel(feature_names[1])
-        plt.legend()
-        plt.xlim(h_min, h_max)
-        plt.ylim(v_min, v_max)
-        plt.title("Visualization of Housing SF vs NYC Classification")
-        plt.show()
+        ax.set_xlabel(feature_names[0])
+        ax.set_ylabel(feature_names[1])
+        ax.legend()
+        ax.set_xlim(h_min, h_max)
+        ax.set_ylim(v_min, v_max)
+        ax.set_title("Visualization of Housing SF vs NYC Classification")
+        fig.show()
 
     # visualize 3d
     elif d == 3:
-        fig = plt.figure()
         ax = fig.add_subplot(111, projection='3d')
 
         ax.scatter(X_sf[:,0], X_sf[:,1], X_sf[:,2], c='r', label='sf')
         ax.scatter(X_nyc[:,0], X_nyc[:,1], X_nyc[:,2], c='b', label='nyc')
 
         xx_min, xx_max = X[:,0].min(), X[:,0].max()
+        xx_range = abs(xx_max - xx_min)
         yy_min, yy_max = X[:,1].min(), X[:,1].max()
+        yy_range = abs(yy_max - yy_min)
 
-        xx, yy = np.meshgrid(np.linspace(xx_min, xx_max, 2), np.linspace(yy_min, yy_max, 2))
-        z = (-w[0] * xx -w[1] * yy - b) /1./ w[2]
+        xx, yy = np.meshgrid(np.linspace(xx_min, xx_max, 3), np.linspace(yy_min, yy_max, 3))
+        z = (-w[0] * xx -w[1] * yy - b) / w[2]
 
         ax.plot_surface(xx, yy, z, label='decision boundary', alpha=0.2)
-        ax.set_xlabel(feature_names[2])
+        ax.set_xlabel(feature_names[0])
         ax.set_ylabel(feature_names[1])
-        ax.set_zlabel(feature_names[0])
-        plt.title("Visualization of Housing SF vs NYC Classification")
-        fig.show()
+        ax.set_zlabel(feature_names[2])
+        ax.set_xlim(xx_min - 0.1*xx_range, xx_max + 0.1*xx_range)
+        ax.set_ylim(yy_min - 0.1*yy_range, yy_max + 0.1*yy_range)
+        ax.set_zlim(X[:,2].min(), X[:,2].max())
+        ax.set_title("Visualization of Housing SF vs NYC Classification")
+        fig.show()            
 
 def visualize_linear_regression(feature_names, X, y, w, b):
     d = len(feature_names)

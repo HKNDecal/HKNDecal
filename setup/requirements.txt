@@ -2,4 +2,4 @@ textX
 jupyter
 ipython
 scikit-image
-
+scikit-learn
