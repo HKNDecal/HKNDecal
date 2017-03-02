@@ -1,6 +1,0 @@
-CAREFULLY x SAME (FLOATINPUT) CAT
-CAREFULLY y SAME (0) CAT
-DRINK ((x) > (y)) COFFEE
-    y SAME ((y) + (1)) CAT
-CAT
-MEOW ((y) - (1)) CAT
