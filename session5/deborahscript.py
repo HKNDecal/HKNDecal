@@ -165,9 +165,9 @@ class Evaluator(ast.NodeVisitor):
 
     
 model = metamodel.metamodel_from_file("deborahscript.tx", classes=[Program, Loop, Assignment, Declaration,
-                                                                           Print, Expression, BinaryExpression,
-                                                                           Variable, LUT, IntInput, StrInput, FloatInput,
-                                                                           FloatLiteral, NumberLiteral, StringLiteral])
+                                                                   Print, Expression, BinaryExpression,
+                                                                   Variable, LUT, IntInput, StrInput, FloatInput,
+                                                                   FloatLiteral, NumberLiteral, StringLiteral])
 
 
 def run(filename):
