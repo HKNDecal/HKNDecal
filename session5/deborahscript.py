@@ -16,6 +16,8 @@ from textx import metamodel
 import sys
 
 
+
+
 class DeborahException(BaseException):
     pass
 
@@ -126,6 +128,9 @@ class Evaluator(ast.NodeVisitor):
             return right[left]
         if node.op == ">":
             return int(left > right)
+        #############################
+        # Deborahscript ~ extension #
+        #############################
 
     def visit_Variable(self, node):
         if node.name not in self.environment:
@@ -158,13 +163,21 @@ class Evaluator(ast.NodeVisitor):
     def visit_FloatInput(self, node):
         return float(raw_input())
 
-
-if __name__ == "__main__":
-    if len(sys.argv) >= 2:
-        model = metamodel.metamodel_from_file("deborahscript.tx", classes=[Program, Loop, Assignment, Declaration,
+    
+model = metamodel.metamodel_from_file("deborahscript.tx", classes=[Program, Loop, Assignment, Declaration,
                                                                            Print, Expression, BinaryExpression,
                                                                            Variable, LUT, IntInput, StrInput, FloatInput,
                                                                            FloatLiteral, NumberLiteral, StringLiteral])
+
+
+def run(filename):
+    program = model.model_from_file(filename)
+    return Evaluator().visit(program)
+
+
+if __name__ == "__main__":
+    if len(sys.argv) >= 2:
+        
 
         p = model.model_from_file(sys.argv[1])
         evaluator = Evaluator()
