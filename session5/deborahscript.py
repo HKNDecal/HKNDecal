@@ -176,7 +176,11 @@ def run(filename):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) >= 2:
-        p = model.model_from_file(sys.argv[1])
-        evaluator = Evaluator()
-        evaluator.visit(p)
+    if len(sys.argv) != 2:
+        print("Usage: python deborahscript.py FILENAME")
+        print("Replace FILENAME with the DeborahScript file you want to run.")
+        sys.exit(1)
+
+    p = model.model_from_file(sys.argv[1])
+    evaluator = Evaluator()
+    evaluator.visit(p)
