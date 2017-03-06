@@ -23,63 +23,63 @@ class DeborahException(BaseException):
 
 
 class Program(ast.AST):
-    _fields = ['lines']
+    _fields = ["lines"]
 
 
 class Loop(ast.AST):
-    _fields = ['cond', 'stmts']
+    _fields = ["cond", "stmts"]
 
 
 class Assignment(ast.AST):
-    _fields = ['lhs', 'rhs']
+    _fields = ["lhs", "rhs"]
 
 
 class Declaration(ast.AST):
-    _fields = ['defn']
+    _fields = ["defn"]
 
 
 class Print(ast.AST):
-    _fields = ['exp']
+    _fields = ["exp"]
 
 
 class Expression(ast.AST):
-    _fields = ['val']
+    _fields = ["val"]
 
 
 class BinaryExpression(ast.AST):
-    _fields = ['lhs', 'op', 'rhs']
+    _fields = ["lhs", "op", "rhs"]
 
 
 class Variable(ast.AST):
-    _fields = ['name']
+    _fields = ["name"]
 
 
 class StringLiteral(ast.AST):
-    _fields = ['s']
+    _fields = ["s"]
 
 
 class NumberLiteral(ast.AST):
-    _fields = ['n']
+    _fields = ["n"]
 
 
 class FloatLiteral(ast.AST):
-    _fields = ['n']
+    _fields = ["n"]
 
 
 class LUT(ast.AST):
-    _fields = ['tbl']
+    _fields = ["tbl"]
 
 
 class IntInput(ast.AST):
-    _fields = ['in']
+    _fields = ["in"]
 
 
 class StrInput(ast.AST):
-    _fields = ['in']
+    _fields = ["in"]
 
 
 class FloatInput(ast.AST):
-    _fields = ['in']
+    _fields = ["in"]
 
 
 class Evaluator(ast.NodeVisitor):
@@ -177,8 +177,6 @@ def run(filename):
 
 if __name__ == "__main__":
     if len(sys.argv) >= 2:
-        
-
         p = model.model_from_file(sys.argv[1])
         evaluator = Evaluator()
         evaluator.visit(p)
