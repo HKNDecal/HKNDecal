@@ -1,0 +1,13 @@
+CAREFULLY x SAME (5) CAT
+CAREFULLY y SAME (7) CAT
+CAREFULLY z SAME (#) CAT
+(3)@z SAME (17) CAT
+MEOW ((x) + (y)) CAT
+MEOW ((3)@(z)) CAT
+x SAME ("hello") CAT
+MEOW (x) CAT
+
+DRINK ((3)@(z)) COFFEE
+(3)@z SAME (((3)@(z)) - (1)) CAT
+MEOW ((3)@(z)) CAT
+CAT
