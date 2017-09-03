@@ -4,7 +4,7 @@
 Step 1. Clone this repo to home
 ```bash
 cd ~
-git clone https://github.com/HKNDecal/Spring2017.git
+git clone https://github.com/HKNDecal/Fall2017.git
 ```
 Step 2. Run setup script in the setup directory
 ```bash
