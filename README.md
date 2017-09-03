@@ -8,7 +8,7 @@ git clone https://github.com/HKNDecal/Fall2017.git
 ```
 Step 2. Run setup script in the setup directory
 ```bash
-cd Spring2017/setup
+cd Fall2017/setup
 source decal_setup.sh
 ```
 
