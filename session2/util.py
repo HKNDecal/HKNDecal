@@ -1,4 +1,5 @@
 from textx.metamodel import metamodel_from_file
+import matplotlib.pyplot as plt
 import numpy as np
 
 frequency_table = {
@@ -208,3 +209,25 @@ def encode(string, dictionary):
 def decode(string, dictionary):
     reversed_dictionary = {value: key for key, value in dictionary.items()}
     return " ".join([reversed_dictionary[int(num.strip())] for num in string.split()])
+
+def im_size(im, pretty=True):
+    '''Returns the # of bytes of the given color im. Assumes im is encoded in uint8
+    '''
+    uniquePix = set()
+    for i in range(im.shape[0]):
+        for j in range(im.shape[1]):
+            uniquePix.add(tuple(im[i,j]))
+    bytes = len(uniquePix) * 3
+    if pretty:
+        return "~{} bytes".format(bytes)
+    return bytes
+
+def im_show_gray(im):
+    if im.dtype == np.uint8:
+        vmin, vmax = 0, 255
+    elif im.dtype == np.float64:
+        vmin, vmax = 0., 1.
+    else:
+        vmin, vmax = min(im), max(im)
+    
+    plt.imshow(im, cmap="gray", interpolation='none', vmin=vmin, vmax=vmax)
