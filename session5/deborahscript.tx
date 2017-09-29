@@ -7,7 +7,7 @@ Program:
 ;
 
 Statement:
-    Loop|Assignment|Declaration|Print Terminator
+    (Loop|Assignment|Declaration|Print) Terminator
 ;
 
 Expression:
