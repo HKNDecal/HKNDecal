@@ -4,11 +4,11 @@
 Step 1. Clone this repo to home
 ```bash
 cd ~
-git clone https://github.com/HKNDecal/Spring2018.git
+git clone https://github.com/HKNDecal/HKNDecal.git
 ```
 Step 2. Run setup script in the setup directory
 ```bash
-cd Spring2018/setup
+cd HKNDecal/setup
 source decal_setup.sh
 ```
 
