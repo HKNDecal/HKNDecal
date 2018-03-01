@@ -42,12 +42,13 @@ Step 3:
 
 Step 4 (optional):
 
-  Open up server.py in your favorite text editor to examine the code and see
-  where the vulnerability is. Discuss with your neighbor possible fixes to this
-  problem.
-
+  Open up server.py and index.html in your favorite text editor to examine the
+  code to try to see where the vulnerabilities are. Discuss with your neighbor
+  possible fixes to these problems.
 
 -------- Setup Complete ---------
+
+----- Demos: -----
 
 Demo 1: Cross-Site-Scripting Vulnerabilities
 
@@ -72,12 +73,11 @@ Demo 2: SQL Injection
 	itemName'%3BDELETE FROM todos%3B--
 
   Add the item to the page. Refresh and examine behavior. Now try to delete the
-  same text field, and then refresh and examine behavior. Do you notice
-  something wrong? Talk with your neighbor about what happened and possible
-  fixes to problem.
+  same text field. Do you notice something wrong? Talk with your neighbor about
+  what happened and possible fixes to the problem.
 
 
 Demo 3: Clickjacking (optional)
 
-	Click the link at the bottom of the page and see what happens. ;)
+	Click the link close to the bottom of the page and see what happens. ;)
 
