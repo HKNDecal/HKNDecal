@@ -22,9 +22,7 @@ class MyHandler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         logging.getLogger().setLevel(logging.INFO)
-        print "url: ", self.path
         parsed = urlparse(self.path)
-        print "URL :", parsed.path
         query = parse_qs(parsed.query)
         logging.info('received {}'.format(parsed.path))
         parsed_lst = parsed.path.split('/')
@@ -67,7 +65,9 @@ class MyHandler(BaseHTTPRequestHandler):
                     return
                 todo_item_name = query['name'][0]
                 self.send_response(200)
-                cursor.executescript("""INSERT INTO todos VALUES('{}')""".format(todo_item_name))    
+                sql = """INSERT INTO todos VALUES('{}')""".format(todo_item_name)
+                logging.info("Executing {}".format(sql))
+                cursor.executescript(sql)
                 conn.commit()
 
             # removing from database
@@ -77,7 +77,9 @@ class MyHandler(BaseHTTPRequestHandler):
                     return
                 todo_item_name = query['name'][0]
                 self.send_response(200)
-                cursor.executescript("""DELETE FROM todos WHERE items = '{}'""".format(todo_item_name))  # <-- this will be the source of the sql injection (use %3B for semicolon)
+                sql = """DELETE FROM todos WHERE items = '{}'""".format(todo_item_name)
+                logging.info("Executing {}".format(sql))
+                cursor.executescript(sql)  # <-- this will be the source of the sql injection (use %3B for semicolon)
                 conn.commit()
             else:
                 self.send_response(404)
@@ -88,6 +90,6 @@ conn = sqlite3.connect('db.sql3')
 cursor = conn.cursor()
 
 PORT = 1050
-httpd = MyTCPServer(("", PORT), MyHandler)
-logging.info("Serving SQL Injection Demo!")
+httpd = MyTCPServer(('0.0.0.0', PORT), MyHandler)
+logging.info('Serving SQL Injection Demo at http://localhost:{}'.format(PORT))
 httpd.serve_forever()
