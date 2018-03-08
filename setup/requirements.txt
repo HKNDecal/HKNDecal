@@ -1,5 +1,9 @@
 textX
 jupyter
-ipython
+ipython<6
 scikit-image
 scikit-learn
+
+# Newer versions of tornado do not like using Python 2.7 on Ubuntu Trusty
+# (14.04) because it does not include the needed SSL extensions
+tornado<5
