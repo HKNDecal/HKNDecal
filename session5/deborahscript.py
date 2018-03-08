@@ -11,7 +11,7 @@ from __future__ import print_function
 
 # Cats Everywhere
 import ast
-from textx import metamodel
+from textx import metamodel_from_file
 
 import sys
 
@@ -164,10 +164,10 @@ class Evaluator(ast.NodeVisitor):
         return float(raw_input())
 
     
-model = metamodel.metamodel_from_file("deborahscript.tx", classes=[Program, Loop, Assignment, Declaration,
-                                                                   Print, Expression, BinaryExpression,
-                                                                   Variable, LUT, IntInput, StrInput, FloatInput,
-                                                                   FloatLiteral, NumberLiteral, StringLiteral])
+model = metamodel_from_file("deborahscript.tx", classes=[Program, Loop, Assignment, Declaration,
+                                                         Print, Expression, BinaryExpression,
+                                                         Variable, LUT, IntInput, StrInput, FloatInput,
+                                                         FloatLiteral, NumberLiteral, StringLiteral])
 
 
 def run(filename):
