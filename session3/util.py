@@ -16,7 +16,7 @@ def extract_cols(lst, keys):
 def visualize_perceptron(feature_names, X, y, w, b, fig=None):
     d = len(feature_names)
     if d not in (2, 3):
-        print "Visualize 2d can only take 2 or 3 features at once!"
+        print ("Visualize 2d can only take 2 or 3 features at once!")
         return
 
     is_sf = np.where(y == 1)
@@ -71,13 +71,13 @@ def visualize_perceptron(feature_names, X, y, w, b, fig=None):
         ax.set_ylim(yy_min - 0.1*yy_range, yy_max + 0.1*yy_range)
         ax.set_zlim(X[:,2].min(), X[:,2].max())
         ax.set_title("Visualization of Housing SF vs NYC Classification")
-        fig.show()            
+        fig.show()
 
 def visualize_linear_regression(feature_names, X, y, w, b):
     d = len(feature_names)
 
     if d not in (1, 2):
-        print "Can only visualize 1 or 2 features at a time."
+        print ("Can only visualize 1 or 2 features at a time.")
         return
 
     if d == 1:
