@@ -189,7 +189,7 @@ def smooth(data, length):
 
 def to_chunks(data, chunks_per_second = 1, datarate=44100):
     num_chunks = int(round(chunks_per_second * len(data) / datarate))
-    chunks = [data[datarate / chunks_per_second * i : datarate / chunks_per_second * (i + 1)] for i in range(num_chunks)]
+    chunks = [data[int(datarate / chunks_per_second * i) : int(datarate / chunks_per_second * (i + 1))] for i in range(num_chunks)]
     frequencies = np.asarray([np.abs(np.fft.rfft(chunk)) for chunk in chunks]).T
     return frequencies
 
