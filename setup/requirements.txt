@@ -3,3 +3,6 @@ jupyter
 ipython
 scikit-image
 scikit-learn
+scipy
+numpy
+matplotlib
