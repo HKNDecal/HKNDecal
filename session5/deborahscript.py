@@ -1,4 +1,4 @@
-from __future__ import print_function
+from __future__ import (print_function, absolute_import, division, unicode_literals)
 
 # DeborahScript has no functions because Deborah doesn't function
 # DeborahScript has conditionals
@@ -15,7 +15,11 @@ from textx import metamodel_from_file
 
 import sys
 
-
+# raw_input -> input py2/3 compatibility
+try:
+    input = raw_input
+except NameError:
+    pass
 
 
 class DeborahException(BaseException):
@@ -155,15 +159,15 @@ class Evaluator(ast.NodeVisitor):
                 self.visit(line)
 
     def visit_IntInput(self, node):
-        return int(raw_input())
+        return int(input())
 
     def visit_StrInput(self, node):
-        return raw_input()
+        return input()
 
     def visit_FloatInput(self, node):
-        return float(raw_input())
+        return float(input())
 
-    
+
 model = metamodel_from_file("deborahscript.tx", classes=[Program, Loop, Assignment, Declaration,
                                                          Print, Expression, BinaryExpression,
                                                          Variable, LUT, IntInput, StrInput, FloatInput,
