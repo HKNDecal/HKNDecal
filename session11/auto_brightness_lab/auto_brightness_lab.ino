@@ -62,8 +62,8 @@ int getLEDVoltage(int obs) {
   /* TODO: Part 2
    *         Change these variables to the min and max photoresistor readings.
    */
-  int min_obs = 220; // TODO: Change to actual values
-  int max_obs = 1000; //TODO: Change to actual values
+  int min_obs = 0; // TODO: Change to actual values
+  int max_obs = 0; //TODO: Change to actual values
 
   int min_controls = 0;
   int max_controls = 255;
