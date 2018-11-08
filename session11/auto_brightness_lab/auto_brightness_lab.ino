@@ -2,7 +2,7 @@
 	In this demo, we'll be using photoresistor input to control the brightness of an LED. 
   Adapted from sparkfun.com demo 
 */
-const int sensorPin = P6_2;
+const int sensorPin = P6_1;
 const int ledPin = P2_5;
 
 // TODO: Change here in part 2
