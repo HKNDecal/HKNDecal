@@ -1,8 +1,18 @@
+from __future__ import print_function
+
 import socket, os, logging
-from SocketServer import TCPServer
-from BaseHTTPServer import BaseHTTPRequestHandler
-from urlparse import urlparse, parse_qs
 import sqlite3, json
+
+try:
+    # Python 3
+    from http.server import BaseHTTPRequestHandler
+    from socketserver import TCPServer
+    from urllib.parse import urlparse, parse_qs
+except ImportError:
+    # Python 2
+    from BaseHTTPServer import BaseHTTPRequestHandler
+    from SocketServer import TCPServer
+    from urlparse import urlparse, parse_qs
 
 logging.getLogger().setLevel(logging.INFO)
 
@@ -26,7 +36,7 @@ class MyHandler(BaseHTTPRequestHandler):
         query = parse_qs(parsed.query)
         logging.info('received {}'.format(parsed.path))
         parsed_lst = parsed.path.split('/')
-        print "parsed list:", parsed_lst
+        print("parsed list:", parsed_lst)
         logging.info('parsed lst {}'.format(parsed_lst))
 
         # try serving file
