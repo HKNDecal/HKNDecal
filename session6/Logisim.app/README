@@ -1,6 +1,10 @@
 The full Logisim distribution is archived in the JAR file at:
 
-    Contents/Resources/Java/logisim.jar
+    Contents/Resources/Java/logisim-evolution.jar
 
 from this file's location. That JAR file includes all the compiled
 files, the documentation files, and the Logisim source code.
+
+To run logisim, open up your terminal, navigate into the directory
+that logisim evolution is located in, and run the following command:
+java -jar logisim-evolution.jar
