@@ -1,0 +1,7 @@
+numpy
+matplotlib
+scipy
+PyWavelets
+jupyter
+ipython
+scikit-video
