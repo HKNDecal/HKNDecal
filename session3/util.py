@@ -73,9 +73,10 @@ def visualize_perceptron(feature_names, X, y, w, b, fig=None):
         ax.set_title("Visualization of Housing SF vs NYC Classification")
         fig.show()
 
-def visualize_linear_regression(feature_names, X, y, w, b):
+def visualize_linear_regression(feature_names, X, y, w):
     d = len(feature_names)
-
+    w,b = w[:-1], w[-1]
+    
     if d not in (1, 2):
         print ("Can only visualize 1 or 2 features at a time.")
         return
