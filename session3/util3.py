@@ -86,8 +86,8 @@ def visualize_linear_regression(feature_names, X, y, w):
 
         fig = plt.figure()
         ax = fig.gca()
-        ax.scatter(X.reshape(-1,1), y)
-        plt.plot([x_min, x_max], [b, b + w*(x_max - x_min)], '-', label='prediction')
+        ax.scatter(X[:,0], y, c = 'b')
+        plt.plot([x_min, x_max], [b, b + w*(x_max - x_min)], '-', label='prediction', c = 'r')
         plt.xlabel(feature_names[0])
         plt.ylabel("Price")
         plt.legend()
