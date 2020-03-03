@@ -7,3 +7,4 @@ ipython
 scikit-image
 scikit-video
 scikit-learn
+cryptography
