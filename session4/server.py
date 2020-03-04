@@ -54,7 +54,7 @@ class MyHandler(BaseHTTPRequestHandler):
                 self.send_response(200)
                 self.send_header('Content-type', content_type)
                 self.end_headers()
-                self.wfile.write(f.read())
+                self.wfile.write(bytes(f.read(), encoding='utf-8'))
 
         # or this could be an api call
         elif parsed_lst[1] == 'api':
@@ -65,7 +65,7 @@ class MyHandler(BaseHTTPRequestHandler):
                 self.send_response(200)
                 self.send_header('Content-type', 'application/json')
                 self.end_headers()
-                self.wfile.write(json.dumps(todo_list))
+                self.wfile.write(bytes(json.dumps(todo_list), encoding='utf-8'))
 
 
             # inserting into database
