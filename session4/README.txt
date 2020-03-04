@@ -32,7 +32,7 @@ Step 3:
 
 	Make sure you are locally hosting the website by entering the command below:
 
-	python2 server.py
+	python server.py
 
   If done successfully, should see output message in terminal. Copy this link
   to go to the website you're now hosting:
