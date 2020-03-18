@@ -156,62 +156,8 @@ This file is intended to be loaded by Logisim-evolution (https://github.com/reds
     </comp>
     <comp lib="1" loc="(240,200)" name="NOT Gate"/>
   </circuit>
-  <circuit name="L2_NORs">
-    <a name="circuit" val="L2_NORs"/>
-    <a name="clabel" val=""/>
-    <a name="clabelup" val="east"/>
-    <a name="clabelfont" val="SansSerif plain 12"/>
-    <a name="circuitnamedbox" val="false"/>
-    <a name="circuitvhdlpath" val=""/>
-    <comp lib="0" loc="(100,410)" name="Pin">
-      <a name="label" val="b"/>
-      <a name="labelloc" val="north"/>
-    </comp>
-    <comp lib="6" loc="(82,322)" name="Text">
-      <a name="text" val="Use only the gates below and wires. Hint: Use De Morgan's law."/>
-      <a name="font" val="SansSerif plain 18"/>
-      <a name="halign" val="left"/>
-    </comp>
-    <comp lib="1" loc="(340,390)" name="NOR Gate"/>
-    <comp lib="0" loc="(340,160)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="label" val="NOT_a"/>
-      <a name="labelloc" val="north"/>
-    </comp>
-    <comp lib="0" loc="(100,370)" name="Pin">
-      <a name="label" val="a"/>
-      <a name="labelloc" val="north"/>
-    </comp>
-    <comp lib="1" loc="(420,390)" name="NOR Gate"/>
-    <comp lib="6" loc="(88,84)" name="Text">
-      <a name="text" val="Use only the gates below and wires."/>
-      <a name="font" val="SansSerif plain 18"/>
-      <a name="halign" val="left"/>
-    </comp>
-    <comp lib="0" loc="(480,390)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="label" val="a_AND_b"/>
-      <a name="labelloc" val="north"/>
-    </comp>
-    <comp lib="0" loc="(110,160)" name="Pin">
-      <a name="label" val="a"/>
-      <a name="labelloc" val="north"/>
-    </comp>
-    <comp lib="1" loc="(250,390)" name="NOR Gate"/>
-    <comp lib="1" loc="(260,160)" name="NOR Gate"/>
-    <comp lib="6" loc="(323,45)" name="Text">
-      <a name="text" val="Create a NOT gate using NORs"/>
-      <a name="font" val="SansSerif plain 32"/>
-    </comp>
-    <comp lib="6" loc="(326,284)" name="Text">
-      <a name="text" val="Create an AND gate using NORs"/>
-      <a name="font" val="SansSerif plain 32"/>
-    </comp>
-  </circuit>
-  <circuit name="L3_Adder">
-    <a name="circuit" val="L3_Adder"/>
+  <circuit name="L2_Adder">
+    <a name="circuit" val="L2_Adder"/>
     <a name="clabel" val=""/>
     <a name="clabelup" val="east"/>
     <a name="clabelfont" val="SansSerif plain 12"/>
@@ -253,8 +199,8 @@ This file is intended to be loaded by Logisim-evolution (https://github.com/reds
       <a name="font" val="SansSerif plain 18"/>
     </comp>
   </circuit>
-  <circuit name="L4_ALU">
-    <a name="circuit" val="L4_ALU"/>
+  <circuit name="L3_ALU">
+    <a name="circuit" val="L3_ALU"/>
     <a name="clabel" val=""/>
     <a name="clabelup" val="east"/>
     <a name="clabelfont" val="SansSerif plain 12"/>
@@ -382,100 +328,6 @@ This file is intended to be loaded by Logisim-evolution (https://github.com/reds
     <comp lib="0" loc="(190,220)" name="Tunnel">
       <a name="width" val="8"/>
       <a name="label" val="b"/>
-    </comp>
-  </circuit>
-  <circuit name="L5_Simple_CPU">
-    <a name="circuit" val="L5_Simple_CPU"/>
-    <a name="clabel" val=""/>
-    <a name="clabelup" val="east"/>
-    <a name="clabelfont" val="SansSerif plain 12"/>
-    <a name="circuitnamedbox" val="false"/>
-    <a name="circuitvhdlpath" val=""/>
-    <wire from="(170,260)" to="(200,260)"/>
-    <wire from="(260,250)" to="(320,250)"/>
-    <wire from="(240,330)" to="(270,330)"/>
-    <wire from="(240,260)" to="(240,330)"/>
-    <wire from="(240,250)" to="(240,260)"/>
-    <wire from="(350,230)" to="(370,230)"/>
-    <wire from="(260,240)" to="(260,250)"/>
-    <wire from="(220,230)" to="(240,230)"/>
-    <wire from="(220,250)" to="(240,250)"/>
-    <wire from="(260,300)" to="(270,300)"/>
-    <wire from="(240,260)" to="(320,260)"/>
-    <wire from="(240,230)" to="(320,230)"/>
-    <wire from="(260,250)" to="(260,300)"/>
-    <wire from="(220,240)" to="(260,240)"/>
-    <wire from="(240,200)" to="(240,230)"/>
-    <comp lib="0" loc="(370,230)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="width" val="8"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="0" loc="(270,330)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="width" val="8"/>
-      <a name="label" val="b"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="0" loc="(270,300)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="width" val="8"/>
-      <a name="label" val="a"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="6" loc="(273,52)" name="Text">
-      <a name="text" val="Interacting with the ALU"/>
-      <a name="font" val="SansSerif plain 32"/>
-    </comp>
-    <comp loc="(350,230)" name="L4_ALU">
-      <a name="label" val="ALU"/>
-    </comp>
-    <comp lib="0" loc="(240,200)" name="Pin">
-      <a name="facing" val="south"/>
-      <a name="output" val="true"/>
-      <a name="width" val="2"/>
-      <a name="label" val="opcode"/>
-      <a name="labelloc" val="north"/>
-    </comp>
-    <comp lib="6" loc="(338,114)" name="Text">
-      <a name="text" val="and see if it behaves as you expect. What do the different"/>
-      <a name="font" val="SansSerif plain 18"/>
-    </comp>
-    <comp lib="6" loc="(174,140)" name="Text">
-      <a name="text" val="opcodes represent?"/>
-      <a name="font" val="SansSerif plain 18"/>
-    </comp>
-    <comp lib="6" loc="(86,85)" name="Text">
-      <a name="text" val="The input is an encoded instruction. Play around with it,"/>
-      <a name="font" val="SansSerif plain 18"/>
-      <a name="halign" val="left"/>
-    </comp>
-    <comp lib="0" loc="(200,260)" name="Splitter">
-      <a name="fanout" val="3"/>
-      <a name="incoming" val="18"/>
-      <a name="bit0" val="2"/>
-      <a name="bit1" val="2"/>
-      <a name="bit3" val="2"/>
-      <a name="bit4" val="2"/>
-      <a name="bit5" val="2"/>
-      <a name="bit6" val="2"/>
-      <a name="bit7" val="2"/>
-      <a name="bit8" val="1"/>
-      <a name="bit9" val="1"/>
-      <a name="bit10" val="1"/>
-      <a name="bit11" val="1"/>
-      <a name="bit12" val="1"/>
-      <a name="bit13" val="1"/>
-      <a name="bit14" val="1"/>
-      <a name="bit15" val="1"/>
-      <a name="bit16" val="0"/>
-      <a name="bit17" val="0"/>
-    </comp>
-    <comp lib="0" loc="(170,260)" name="Pin">
-      <a name="width" val="18"/>
     </comp>
   </circuit>
 </project>
