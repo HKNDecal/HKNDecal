@@ -30,7 +30,7 @@ Step 2:
 
 Step 3:
 
-	Make sure you are locally hosting the website by entering the command below:
+  Make sure you are locally hosting the website by entering the command below:
 
 	python server.py
 
@@ -46,29 +46,33 @@ Step 4 (optional):
   code to try to see where the vulnerabilities are. Discuss with your neighbor
   possible fixes to these problems.
 
+Note: If you want to reset the database at any point, run
+
+    git reset --hard HEAD
+
 -------- Setup Complete ---------
 
 ----- Demos: -----
 
 Demo 1: Cross-Site-Scripting Vulnerabilities
 
-	In the text field, copy/paste the following line and add item:
+  In the text field, copy/paste the following line and add item:
 
 	<script>alert("Alert! This is an XSS vulnerability")</script>
 
-	Now, reload the page and see what happens.
+  Now, reload the page and see what happens.
 
 
 Demo 1.1: Relfected XSS Vulnerability:
 
-	Copy/paste the URL below in and refresh to see effects:
+  Copy/paste the URL below in and refresh to see effects:
 
 	http://localhost:1050/?person=%3Cimg%20%20src=%22broken%20link%22%20onerror=%22alert(%27Triggered%27)%22/%3E
 
 
 Demo 2: SQL Injection
 
-	In the text field, copy/paste the following line:
+  In the text field, copy/paste the following line:
 
 	itemName'%3BDELETE FROM todos%3B--
 
@@ -79,5 +83,6 @@ Demo 2: SQL Injection
 
 Demo 3: Clickjacking (optional)
 
-	Click the link close to the bottom of the page and see what happens. ;)
+  Click the link close to the bottom of the page and see what happens. ;)
+  You may need to try clicking a few times.
 
