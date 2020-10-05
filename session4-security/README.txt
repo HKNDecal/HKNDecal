@@ -46,9 +46,12 @@ Step 4 (optional):
   code to try to see where the vulnerabilities are. Discuss with your neighbor
   possible fixes to these problems.
 
+
 Note: If you want to reset the database at any point, run
 
     git reset --hard HEAD
+  
+Another note: For best results, use Google Chrome browser.
 
 -------- Setup Complete ---------
 
