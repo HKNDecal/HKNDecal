@@ -71,7 +71,7 @@ Assignment:
 ;
 
 Print:
-    "POTASSIUM" exp=Expression
+    "REPLACE_ME" exp=Expression
 ;
 
 Loop:
