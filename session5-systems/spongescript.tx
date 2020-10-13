@@ -47,7 +47,7 @@ FloatLiteral:
 ;
 
 Terminator:
-    "CAT"
+    "EnDLinE"
 ;
 
 Variable:
@@ -55,7 +55,7 @@ Variable:
 ;
 
 Declaration:
-    "CAREFULLY" defn=Assignment
+    "AsSiGN" defn=Assignment
 ;
 
 LHS:
@@ -67,15 +67,15 @@ LUTDef:
 ;
 
 Assignment:
-    lhs=LHS "SAME" rhs=Expression
+    lhs=LHS "EqUaLs" rhs=Expression
 ;
 
 Print:
-    "MEOW" exp=Expression
+    "PrInT" exp=Expression
 ;
 
 Loop:
-    "DRINK" cond=Expression "COFFEE" stmts*=Statement
+    "LoOP" cond=Expression "BeGIn" stmts*=Statement
 ;
 
 IntInput:
