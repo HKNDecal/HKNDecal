@@ -1,19 +1,19 @@
-CAREFULLY x SAME (INTINPUT) CAT
-CAREFULLY y SAME (INTINPUT) CAT
-CAREFULLY z SAME (0) CAT
-DRINK (((x) - (y)) > (0)) COFFEE
-    z SAME (x) CAT
-    x SAME (y) CAT
-    y SAME (z) CAT
-CAT
-DRINK (x) COFFEE
-    y SAME ((y) - (x)) CAT
-    DRINK (((x) - (y)) > (0)) COFFEE
-        z SAME (x) CAT
-        x SAME (y) CAT
-        y SAME (z) CAT
-    CAT
-CAT
+AsSiGN x EqUaLs (INTINPUT) EnDLinE
+AsSiGN y EqUaLs (INTINPUT) EnDLinE
+AsSiGN z EqUaLs (0) EnDLinE
+LoOP (((x) - (y)) > (0)) BeGIn
+    z EqUaLs (x) EnDLinE
+    x EqUaLs (y) EnDLinE
+    y EqUaLs (z) EnDLinE
+EnDLinE
+LoOP (x) BeGIn
+    y EqUaLs ((y) - (x)) EnDLinE
+    LoOP (((x) - (y)) > (0)) BeGIn
+        z EqUaLs (x) EnDLinE
+        x EqUaLs (y) EnDLinE
+        y EqUaLs (z) EnDLinE
+    EnDLinE
+EnDLinE
 
-MEOW ("GCD is") CAT
-MEOW (y) CAT
+PrInT ("GCD is") EnDLinE
+PrInT (y) EnDLinE

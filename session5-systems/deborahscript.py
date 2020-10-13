@@ -168,11 +168,16 @@ class Evaluator(ast.NodeVisitor):
         return float(input())
 
 
-model = metamodel_from_file("deborahscript.tx", classes=[Program, Loop, Assignment, Declaration,
+model = metamodel_from_file("spongescript.tx", classes=[Program, Loop, Assignment, Declaration,
                                                          Print, Expression, BinaryExpression,
                                                          Variable, LUT, IntInput, StrInput, FloatInput,
                                                          FloatLiteral, NumberLiteral, StringLiteral])
 
+def create_model(langfile):
+    return metamodel_from_file(langfile, classes=[Program, Loop, Assignment, Declaration,
+                                                   Print, Expression, BinaryExpression,
+                                                   Variable, LUT, IntInput, StrInput, FloatInput,
+                                                   FloatLiteral, NumberLiteral, StringLiteral])
 
 def run(filename):
     program = model.model_from_file(filename)
