@@ -14,7 +14,10 @@ except ImportError:
     from SocketServer import TCPServer
     from urlparse import urlparse, parse_qs
 
-logging.getLogger().setLevel(logging.INFO)
+# logging_level = logging.CRITICAL
+# logging_level = logging.INFO
+# logging.disable()
+logging.getLogger().setLevel(logging.WARNING)
 
 CONTENT_TYPE_MAP = {
     '.js': 'application/javascript',
@@ -31,13 +34,13 @@ class MyTCPServer(TCPServer):
 class MyHandler(BaseHTTPRequestHandler):
 
     def do_GET(self):
-        logging.getLogger().setLevel(logging.INFO)
+        # logging.getLogger().setLevel(logging_level)
         parsed = urlparse(self.path)
         query = parse_qs(parsed.query)
-        logging.info('received {}'.format(parsed.path))
+        # logging.info('received {}'.format(parsed.path))
         parsed_lst = parsed.path.split('/')
-        print("parsed list:", parsed_lst)
-        logging.info('parsed lst {}'.format(parsed_lst))
+        # print("parsed list:", parsed_lst)
+        # logging.info('parsed lst {}'.format(parsed_lst))
 
         # try serving file
         target_file = None
@@ -76,7 +79,7 @@ class MyHandler(BaseHTTPRequestHandler):
                 todo_item_name = query['name'][0]
                 self.send_response(200)
                 sql = """INSERT INTO todos VALUES('{}')""".format(todo_item_name)
-                logging.info("Executing {}".format(sql))
+                # logging.info("Executing {}".format(sql))
                 cursor.executescript(sql)
                 conn.commit()
 
@@ -88,7 +91,7 @@ class MyHandler(BaseHTTPRequestHandler):
                 todo_item_name = query['name'][0]
                 self.send_response(200)
                 sql = """DELETE FROM todos WHERE items = '{}'""".format(todo_item_name)
-                logging.info("Executing {}".format(sql))
+                # logging.info("Executing {}".format(sql))
                 cursor.executescript(sql)  # <-- this will be the source of the sql injection (use %3B for semicolon)
                 conn.commit()
             else:
@@ -99,7 +102,15 @@ class MyHandler(BaseHTTPRequestHandler):
 conn = sqlite3.connect('db.sql3')
 cursor = conn.cursor()
 
+
 PORT = 1050
 httpd = MyTCPServer(('0.0.0.0', PORT), MyHandler)
-logging.info('Serving SQL Injection Demo at http://localhost:{}'.format(PORT))
-httpd.serve_forever()
+# logging.info('Serving SQL Injection Demo at http://localhost:{}'.format(PORT))
+print('Serving SQL Injection Demo at http://localhost:{}'.format(PORT))
+try:
+    httpd.serve_forever()
+except:
+    pass
+# logging.info('Terminating Server')
+print('Terminating Server')
+httpd.server_close()
