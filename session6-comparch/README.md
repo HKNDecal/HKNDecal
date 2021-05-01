@@ -1,11 +1,11 @@
 
 ## Computer Architecture Lab
 
-There are two versions of this lab; one built for Logism and one as a Jupyter Notebook.
+There are two versions of this lab; one built for Logisim and one as a Jupyter Notebook.
 
-### Logism
+### Logisim
 
-Relevant files are `demos and exercises.circ`, `solutions.circ`, and the `Logism.app` folder.
+Relevant files are `demos and exercises.circ`, `solutions.circ`, and the `Logisim.app` folder.
 
 ### Jupyter Notebook
 
