@@ -1,23 +1,14 @@
 from __future__ import print_function
 
-import socket, os, logging
-import sqlite3, json
+import logging
+import json
+import os
+import socket
+import sqlite3
 
-try:
-    # Python 3
-    from http.server import BaseHTTPRequestHandler
-    from socketserver import TCPServer
-    from urllib.parse import urlparse, parse_qs
-except ImportError:
-    # Python 2
-    from BaseHTTPServer import BaseHTTPRequestHandler
-    from SocketServer import TCPServer
-    from urlparse import urlparse, parse_qs
-
-# logging_level = logging.CRITICAL
-# logging_level = logging.INFO
-# logging.disable()
-logging.getLogger().setLevel(logging.WARNING)
+from http.server import BaseHTTPRequestHandler
+from socketserver import TCPServer
+from urllib.parse import urlparse, parse_qs
 
 CONTENT_TYPE_MAP = {
     '.js': 'application/javascript',
@@ -25,6 +16,9 @@ CONTENT_TYPE_MAP = {
     '.css': 'text/css',
     '': 'text/plain'
 }
+PORT = 1050
+CONN = sqlite3.connect('db.sql3')
+CURSOR = CONN.cursor()
 
 class MyTCPServer(TCPServer):
     def server_bind(self):
@@ -32,7 +26,6 @@ class MyTCPServer(TCPServer):
         self.socket.bind(self.server_address)
 
 class MyHandler(BaseHTTPRequestHandler):
-
     def do_GET(self):
         # logging.getLogger().setLevel(logging_level)
         parsed = urlparse(self.path)
@@ -64,7 +57,7 @@ class MyHandler(BaseHTTPRequestHandler):
 
             # returning list of current todo items
             if parsed_lst[2] == 'todos':
-                todo_list = [row[0] for row in cursor.execute('SELECT * FROM todos')]
+                todo_list = [row[0] for row in CURSOR.execute('SELECT * FROM todos')]
                 self.send_response(200)
                 self.send_header('Content-type', 'application/json')
                 self.end_headers()
@@ -78,10 +71,10 @@ class MyHandler(BaseHTTPRequestHandler):
                     return
                 todo_item_name = query['name'][0]
                 self.send_response(200)
-                sql = """INSERT INTO todos VALUES('{}')""".format(todo_item_name)
+                sql = f"""INSERT INTO todos VALUES('{todo_item_name}')"""
                 # logging.info("Executing {}".format(sql))
-                cursor.executescript(sql)
-                conn.commit()
+                CURSOR.executescript(sql)
+                CONN.commit()
 
             # removing from database
             elif parsed_lst[2] == 'todos_delete':
@@ -90,27 +83,31 @@ class MyHandler(BaseHTTPRequestHandler):
                     return
                 todo_item_name = query['name'][0]
                 self.send_response(200)
-                sql = """DELETE FROM todos WHERE items = '{}'""".format(todo_item_name)
+                sql = f"""DELETE FROM todos WHERE items = '{todo_item_name}'"""
                 # logging.info("Executing {}".format(sql))
-                cursor.executescript(sql)  # <-- this will be the source of the sql injection (use %3B for semicolon)
-                conn.commit()
+                CURSOR.executescript(sql)  # <-- this will be the source of the sql injection (use %3B for semicolon)
+                CONN.commit()
             else:
                 self.send_response(404)
         else:
             self.send_response(404)
 
-conn = sqlite3.connect('db.sql3')
-cursor = conn.cursor()
+def main() -> None:
+    # logging_level = logging.CRITICAL
+    # logging_level = logging.INFO
+    # logging.disable()
+    logging.getLogger().setLevel(logging.WARNING)
 
+    httpd = MyTCPServer(('0.0.0.0', PORT), MyHandler)
+    # logging.info('Serving SQL Injection Demo at http://localhost:{}'.format(PORT))
+    print(f"Serving SQL Injection Demo at http://localhost:{PORT}")
+    try:
+        httpd.serve_forever()
+    except Exception:
+        pass
+    # logging.info('Terminating Server')
+    print('Terminating Server')
+    httpd.server_close()
 
-PORT = 1050
-httpd = MyTCPServer(('0.0.0.0', PORT), MyHandler)
-# logging.info('Serving SQL Injection Demo at http://localhost:{}'.format(PORT))
-print('Serving SQL Injection Demo at http://localhost:{}'.format(PORT))
-try:
-    httpd.serve_forever()
-except:
-    pass
-# logging.info('Terminating Server')
-print('Terminating Server')
-httpd.server_close()
+if __name__ == "__main__":
+    main()
